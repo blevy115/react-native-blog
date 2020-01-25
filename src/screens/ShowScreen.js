@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context } from '../context/BlogContext';
+import { Entypo } from '@expo/vector-icons'
 
 
 const ShowScreen = ( { navigation }) => {
@@ -13,6 +14,14 @@ const ShowScreen = ( { navigation }) => {
       <Text>{blogPost.content}</Text>
     </View>
   )
+}
+
+ShowScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: <TouchableOpacity onPress={() => navigation.navigate('Edit')}>
+    <Entypo name='edit' size={30} style={{marginRight:10}}/>
+    </TouchableOpacity>
+  }
 }
 
 const styles = StyleSheet.create({});
