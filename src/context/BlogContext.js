@@ -14,13 +14,9 @@ const blogReducer = (state, action) => {
       return state.filter((blogPost) => blogPost.id !== action.payload)
     case 'edit_blogpost':
       return state.map((blogPost) => {
-        return (blogPost.id === action.payload.id ?
-          {...blogPost,
-            title:action.payload.title,
-            content:action.payload.content,
-          } :
+        return blogPost.id === action.payload.id ?
+          action.payload :
           blogPost
-        )
       })
     default:
       return state
@@ -30,7 +26,7 @@ const blogReducer = (state, action) => {
 const addBlogPost = (dispatch) => {
   return (title, content, callBack) => {
     dispatch({type: 'add_blogpost', payload:{title, content}})
-    callBack();
+    if( callBack ) callBack();
   }
 }
 
@@ -43,7 +39,7 @@ const deleteBlogPost = (dispatch) => {
 const editBlogPost = (dispatch) => {
   return (id, title, content, callBack) => {
     dispatch({type: 'edit_blogpost', payload: {id, title, content}})
-    callBack();
+    if( callBack ) callBack();
   }
 }
 
