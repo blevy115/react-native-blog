@@ -10,7 +10,6 @@ const CreateScreen = ( { navigation }) => {
       addBlogPost(title, content, () => {
         navigation.navigate('Index')
       })}}
-    initialValues={{title:'', content:''}}
     labels={{title:'Enter',content:'Enter', submit:'Add'}}
   />
 };
